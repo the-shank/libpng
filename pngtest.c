@@ -901,6 +901,12 @@ test_one_file(const char *inname, const char *outname)
    read_ptr =
        png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 #endif
+   
+   if(!read_ptr) {
+      fprintf(STDERR, "Unable to allocate read struct\n");
+      return (1);
+   }
+   
    png_set_error_fn(read_ptr, &error_parameters, pngtest_error,
        pngtest_warning);
 
@@ -913,6 +919,12 @@ test_one_file(const char *inname, const char *outname)
    write_ptr =
        png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 #endif
+   
+   if(!write_ptr) {
+      fprintf(STDERR, "Unable to allocate write struct\n");
+      return (1);
+   }
+   
    png_set_error_fn(write_ptr, &error_parameters, pngtest_error,
        pngtest_warning);
 #endif
